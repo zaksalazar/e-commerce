@@ -12,7 +12,10 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: Category,
-          Tag,
+          
+        },
+        {
+          model: Tag,
         },
       ],
     });
@@ -26,15 +29,19 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  try {
-    const product = await Product.findByPK(req.params.id, {
+  try { 
+    const product = await Product.findOne({
+      where: {
+        id: req.params.id,
+      },
       include: [
         {
-          model: Category,
-          Tag, 
+          model: Category
         },
-  
-      ],
+        {
+          model: Tag,
+        },
+    ]
     });
     if (!product) {
       res.status(404).json({ message: "No product found with this id" });
@@ -51,10 +58,10 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   /* req.body should look like this...
     {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: []
+      "product_name": "Basketball",
+      "price": 200.00,
+      "stock": 3,
+      "tagIds": []
     }
   */
   Product.create(req.body)
@@ -82,7 +89,7 @@ router.post("/", async (req, res) => {
 // update product
 router.put("/:id", (req, res) => {
   // update product data
-  Product.update(req.body, {
+  Product.update( {
     where: {
       id: req.params.id,
     },

@@ -24,8 +24,11 @@ router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   try {
-    const category = await Category.findByPK(req.params.id, 
-      {
+    const category = await Category.findOne({
+      where: {
+        id: req.params.id
+      },
+  
       include: [{
         model:Product
       }]
@@ -46,6 +49,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // create a new category
+//   // {
+//   "id": 1,
+// 	// "category_name": "Shirts",
+// 	// "products": []
+// }
+	// 		{
   try {
   const category = await Category.create(req.body); 
   res.status(200).json(category);
@@ -58,11 +67,15 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
+  // {
+  //   "category_name": "Cool Shirts"
+  //   }
  try {
   const updateCategory = await Category.update({
     id: req.params.id,
     category_name: req.body.category_name
-  }, {
+  }, 
+  {
     where: {
       id: req.params.id
     }
