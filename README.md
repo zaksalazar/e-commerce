@@ -16,4 +16,4 @@ https://github.com/zaksalazar/e-commerce
 
 # Demo Video 
 This video shows a demonstration of the program starting and testing the routes using Insomnia. 
-https://drive.google.com/file/d/1tZQka_kpFl-MkrUTZmhuA1bRz1gk54rJ/view?usp=sharing
+https://drive.google.com/file/d/15UOHtWH8iLwLw74e1eqUFCisR9vWseqI/view?usp=share_link
